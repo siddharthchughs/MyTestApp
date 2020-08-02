@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.os.Parcelable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -44,6 +43,7 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
     private var mainViewModel: SearchViewModel? = null
     lateinit var btnRetryConnectionServcie: Button
     lateinit var layoutCheckNetwork: LinearLayout
+    private lateinit var gridLayoutManager: GridLayoutManager
     var connected: Boolean ?= false
     lateinit var imgNetworkAvaiable: ImageView
     lateinit var imgNetworknotAvaiable: ImageView
@@ -57,6 +57,10 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
     lateinit var editSearch: EditText
     var dt:String?=null
     lateinit var db : DatabaseHelperManager
+    var loading = true
+    var pastVisiblesItems: Int?=null
+     var visibleItemCount: Int?=null
+    var totalItemCount: Int?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,17 +72,7 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_search, container, false)
-//        requireContext().setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mainViewModel = ViewModelProviders.of(requireActivity()).get(SearchViewModel::class.java)
-        mainViewModel!!.allBlog.observe(requireActivity(), Observer { blogList ->
-            if(blogList!=null){
-                showSearchdata(blogList)
-                layoutCheckNetwork.visibility = GONE
-            }
-            else{
-                layoutCheckNetwork.visibility = VISIBLE
-            }
-        })
         Uinitialize(view)
         swipeRefreshLayout.setOnRefreshListener {
             mainViewModel!!.refreshData()
@@ -130,11 +124,7 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
         ksd = ArrayList()
         dh = DatabaseHelper(context)
         db = DatabaseHelperManager(requireContext())
-
-
     }
-
-
 
     private fun showSearchdata(blogList: List<Data>?) {
         if (blogList != null) {
@@ -148,39 +138,30 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
             searchRecyerliew.layoutManager = GridLayoutManager(activity, ITEM_SPAN_COUNT_PORTRAIT)
             searchRecyerliew.itemAnimator = DefaultItemAnimator()
             searchRecyerliew.adapter = searchAdapter
-          //  searchRecyerliew.smoothScrollToPosition(0)
             searchRecyerliew.setHasFixedSize(true)
             swipeRefreshLayout.isRefreshing= false
         }
-
     }
 
-
-
     fun showfromLocal(){
-//        ksd?.addAll(db.getAllCotacts)
         searchAdapter = SelectItemAdapter(requireContext(),db.getAllCotacts, this)
         searchRecyerliew.layoutManager = GridLayoutManager(activity, ITEM_SPAN_COUNT_PORTRAIT)
         searchRecyerliew.itemAnimator = DefaultItemAnimator()
         searchRecyerliew.adapter = searchAdapter
-        //  searchRecyerliew.smoothScrollToPosition(0)
         searchRecyerliew.setHasFixedSize(true)
         swipeRefreshLayout.isRefreshing= false
-
+        searchAdapter.notifyDataSetChanged()
     }
     fun searchfrom(data:String){
-        searchAdapter = SelectItemAdapter(requireContext(),db.getSearchedLike(data), this)
+        searchAdapter = SelectItemAdapter(requireContext(), db.getSearch(data), this)
         searchRecyerliew.layoutManager = GridLayoutManager(activity, ITEM_SPAN_COUNT_PORTRAIT)
-        searchRecyerliew.itemAnimator = DefaultItemAnimator()
         searchRecyerliew.adapter = searchAdapter
         searchRecyerliew.setHasFixedSize(true)
-
+        searchAdapter.notifyDataSetChanged()
     }
 
     override fun onResume() {
         super.onResume()
-        Log.i("on","Local extraction")
-
         mainViewModel?.allBlog?.observe(requireActivity(), Observer { blogList ->
             if(blogList!=null){
                 showSearchdata(blogList)

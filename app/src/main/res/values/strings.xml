@@ -11,7 +11,7 @@
     <string name="network_check">No Network, Check Please</string>
     <string name="retry_label">Retry Again</string>
     <string name="network_online">You are now Connected</string>
-    <string name="connect_label">Already Connected</string>
+    <string name="connect_label">Connected</string>
     <string name="image_describe">image describe</string>
     <bool name="portrait">true</bool>
     <bool name="landscape">true</bool>
