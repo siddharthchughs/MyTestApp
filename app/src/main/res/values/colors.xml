@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="background_search">#BBDEFB</color>
+    <color name="background_detail_comment">#FFFFFF</color>
+    <color name="detail_save_view"></color>
+    <color name="detail_comment_hint_text_color"></color>
+    <color name="search_text_color">#BBDEFB</color>
+    <color name="search_hint_text_color">#FFFFFF</color>
+    <color name="detail_back_view_color"></color>
+    <color name="search_decorator_color_bg">#90CAF9</color>
+    <color name="header_bg_start">#2196F3</color>
+    <color name="header_bg_mid">#42A5F5</color>
+    <color name="header_bg_end">#64B5F6</color>
+    <color name="tollbar_text_title_color">#7986CB</color>
+    <color name="background_white">#FFFFFF</color>
+
+</resources>

@@ -1,0 +1,39 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/search_text_color</item>
+        <item name="colorPrimaryDark">#90CAF9</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppThemDetail" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/search_text_color</item>
+        <item name="colorPrimaryDark">#90CAF9</item>
+        <item name="background">@color/background_white</item>
+
+    </style>
+
+    <style name="AppThemAdd" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppThemeTextAppearenceSave" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium.Inverse</item>
+        <item name="android:textColor">@color/background_white</item>
+        <item name="background">@android:color/white</item>
+    </style>
+
+    <style name="AppThemeTextAppearenceClear" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium.Inverse</item>
+        <item name="android:textColor">@color/search_decorator_color_bg</item>
+        <item name="background">@android:color/white</item>
+    </style>
+
+
+
+
+</resources>

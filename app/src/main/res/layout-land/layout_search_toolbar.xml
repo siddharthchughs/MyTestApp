@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/toolbar"
+    android:minHeight="?attr/actionBarSize"
+    android:background="@android:color/white"
+>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/backNavigate"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_back_border"
+            android:text="Back"
+            android:textSize="13sp"
+            android:textColor="@color/tollbar_text_title_color"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+            android:drawableLeft="@drawable/ic_keyboard_backspace"
+            android:paddingLeft="15dp"
+            android:paddingEnd="20dp"
+            />
+<!--        <ImageView-->
+<!--            android:id="@+id/imageNavigate"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:elevation="5dp"-->
+<!--            android:background="@drawable/bg_back_border"-->
+<!--            android:src="@drawable/ic_keyboard_backspace" />-->
+        <TextView
+            android:id="@+id/tollbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/source_code_pro_bold"
+            android:textColor="@color/search_decorator_color_bg"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.Toolbar>
