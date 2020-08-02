@@ -43,10 +43,8 @@ class SearchRepository(private val application: Application) {
                         }
                     }
                     override fun onFailure(call: Call<SearchDataModel?>, t: Throwable) {
-
                         call.isCanceled
                         Toast.makeText(application,"Error in fetching",Toast.LENGTH_SHORT).show()
-
                     }
                 })
             }

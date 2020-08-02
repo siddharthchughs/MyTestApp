@@ -97,43 +97,9 @@ class DatabaseHelperManager(context: Context?) : SQLiteOpenHelper(
     }
 
 
-
-    //    /RETRIEVE OR FILTERING
-    //    public Cursor retrieve(String searchName)
-    //    {
-    //        String query = "SELECT * FROM " + TABLE_SEARCH + " WHERE " + COLUMN_SEARCH_NAME_ID + " LIKE '%" + searchName + "%' ";
-    //        //Cursor cursor = getReadableDatabase().query(TABLE_SEARCH, new String[]{"name_id"},"name_id like ?",new String[]{"%"+"Ba"+"%"},null,null,null);
-    //        // Cursor cursor = getReadableDatabase().query(query,null,null,null,null,null,null);//query(TABLE_SEARCH, null,null,null,null,null,null);
-    //        SQLiteDatabase db = getReadableDatabase();
-    //
-    //        Cursor cursor = db.rawQuery(query , null);
-    //        //        cursor = db.query(TABLE_SEARCH, columns, "name_id like ?",new String[]{"%"+"Ba"+"%"}, null, null, null);
-    //        List<SearchDatum> ld = new ArrayList<>();
-    //        if (cursor.moveToFirst()){
-    //            {
-    //                do {
-    //                    SearchDatum searchDatum = new SearchDatum();
-    //                    searchDatum.setName(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_NAME_ID)));
-    //                    searchDatum.setId(Long.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_ID))));
-    //                    searchDatum.setCode(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_CODE)));
-    //                    searchDatum.setHasDeck(Long.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_HAS_DECK))));
-    //                    searchDatum.setHasDocs(Long.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_CODE))));
-    //                    searchDatum.setHasVideo(Long.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_HAS_VIDEO))));
-    //                    searchDatum.setHasTest(Long.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_HAS_TEST))));
-    //                    Log.i("the","names are"+searchDatum);
-    //                    ld.add(searchDatum);
-    //
-    //                }while (cursor.moveToNext());
-    //            }
-    //        }
-    //
-    //        return cursor;
-    //    }
-
-
     fun getSearch(searchName: String): List<Data> {
-//        val query = "SELECT * FROM SEARCH_RECORDS WHERE title LIKE '%Val_%'"
-        val query_search = "SELECT * FROM SEARCH_RECORDS WHERE title LIKE '%"+ searchName+"_%'"
+//        val query_search = "SELECT * FROM SEARCH_RECORDS WHERE title LIKE '%Val_%'"
+        val query_search = "SELECT id,comment,title,link FROM SEARCH_RECORDS WHERE title LIKE '%"+ searchName+"_%'"
         Log.i("the","query"+query_search)
         val db = readableDatabase
         val cursor = db.rawQuery(query_search, null)
@@ -141,12 +107,10 @@ class DatabaseHelperManager(context: Context?) : SQLiteOpenHelper(
         if (cursor.moveToFirst()) {
             run {
                 do {
-//                    val (id, cover, title, link, type) = Data()
                     val dt = Data()
                     dt.title = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_NAME))
                     dt.id = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_ID))
                    dt.link = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_IMAGE))
-                   dt.cover = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_CODE))
                     search_list.add(dt)
                     Log.i("the","data"+dt)
                 } while (cursor.moveToNext())
@@ -157,54 +121,7 @@ class DatabaseHelperManager(context: Context?) : SQLiteOpenHelper(
         return search_list
     }
 
-    //
-     fun shSearch(searchName: String): List<Data>? {
-        val query =
-            "SELECT link FROM " + TABLE_SEARCH + " WHERE " + COLUMN_SEARCH_NAME.toString() + " LIKE '%" + "_f" + "%' "
-        //Cursor cursor = getReadableDatabase().query(TABLE_SEARCH, new String[]{"name_id"},"name_id like ?",new String[]{"%"+"Ba"+"%"},null,null,null);
-        // Cursor cursor = getReadableDatabase().query(query,null,null,null,null,null,null);//query(TABLE_SEARCH, null,null,null,null,null,null);
-        val db = readableDatabase
-        val cursor = db.rawQuery(query, null)
-        val ld: MutableList<Data> = ArrayList<Data>()
-        if (cursor.moveToFirst()) {
-            run {
-                do {
-                    val searchDatum = Data()
-                    searchDatum.title = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_NAME))
-                    Log.i("the", "names are$searchDatum")
-                    ld.add(searchDatum)
-                } while (cursor.moveToNext())
-            }
-            cursor.close()
-            db.close()
-        }
-        return ld
-    }
-    //
 
-    //Search data with incremental procedure
-    fun getSearchedLike(searchName: String): List<Data> {
-        val query = "SELECT * FROM " + TABLE_SEARCH + " WHERE " + COLUMN_SEARCH_NAME + " LIKE '%" + searchName + "%' "
-        val db = readableDatabase
-        val cursor = db.rawQuery(query, null)
-        val search_list = ArrayList<Data>()
-        if (cursor.moveToFirst()) {
-            run {
-                do {
-//                    val (id, cover, title, link, type) = Data()
-                    val dt = Data()
-                    dt.title = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_NAME))
-                    dt.id = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_ID))
-                    dt.link = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_IMAGE))
-                    dt.cover = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_CODE))
-                    search_list.add(dt)
-                } while (cursor.moveToNext())
-            }
-            cursor.close()
-            db.close()
-        }
-        return search_list
-    }
 
     companion object {
         // If you change the database schema, you must increment the database version.

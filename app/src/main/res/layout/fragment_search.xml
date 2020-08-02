@@ -24,6 +24,7 @@
         android:inputType="text"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textCursorDrawable="@drawable/cursor_bg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

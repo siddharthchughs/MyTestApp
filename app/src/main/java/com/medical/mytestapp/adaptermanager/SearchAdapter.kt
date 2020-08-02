@@ -15,19 +15,13 @@ import java.util.ArrayList
 
 
 class SelectItemAdapter(val context: Context, val imageSearchdata: List<Data>, val clickListener: SelectedClickListener) :
-    RecyclerView.Adapter<SelectItemAdapter.ViewHolder>(), Filterable {
+    RecyclerView.Adapter<SelectItemAdapter.ViewHolder>(){
 
-    private  lateinit var searchFilteredlist: List<Data>
-   init {
-       this.searchFilteredlist= imageSearchdata
-   }
-    override fun getItemCount() = searchFilteredlist.size
+    override fun getItemCount() = imageSearchdata.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         val layoutInflater = LayoutInflater.from(parent.context)
         val displayView = layoutInflater.inflate(R.layout.layout_search_items, parent, false)
-
         return ViewHolder(displayView)
     }
 
@@ -60,38 +54,5 @@ class SelectItemAdapter(val context: Context, val imageSearchdata: List<Data>, v
 
     interface SelectedClickListener{
         fun onSearchImageItemClickEvent(data:Data)
-    }
-
-    override fun getFilter(): Filter {
-        return object : Filter() {
-
-            override fun performFiltering(charSequence: CharSequence): FilterResults {
-                val charString = charSequence.toString()
-                if (charString.isEmpty()) {
-                    searchFilteredlist = imageSearchdata
-                } else {
-                    val resultList = ArrayList<Data>()
-                    for (row in imageSearchdata) {
-                        // name match condition. this might differ depending on your requirement
-                        // here we are looking for name or phone number match
-                        if (row.cover.contentEquals(charString)) {
-                            resultList.add(row)
-                        }
-                        searchFilteredlist = resultList
-                    }
-                }
-
-                val filterResults = FilterResults()
-                filterResults.values = searchFilteredlist
-                return filterResults
-            }
-
-            override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
-
-                searchFilteredlist = filterResults!!.values as List<Data>
-                notifyDataSetChanged()
-
-            }
-        }
     }
 }

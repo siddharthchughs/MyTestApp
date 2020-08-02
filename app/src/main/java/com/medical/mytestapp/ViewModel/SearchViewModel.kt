@@ -1,6 +1,9 @@
 package com.medical.mytestapp.ViewModel
 
 import android.app.Application
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.medical.mytestapp.ConnectionInterface.ServicesUtility
@@ -24,4 +27,5 @@ class SearchViewModel(application: Application):AndroidViewModel(application){
     fun refreshData() {
         movieRepository.refreshData()
     }
+
 }

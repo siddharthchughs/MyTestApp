@@ -8,12 +8,12 @@ import android.net.NetworkInfo
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -77,6 +77,7 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
         swipeRefreshLayout.setOnRefreshListener {
             mainViewModel!!.refreshData()
         }
+        hideSoftKeyboard(view)
         return view
     }
 
@@ -116,8 +117,7 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
             }
 
             override fun afterTextChanged(s: Editable) {
-                searchAdapter.getFilter().filter(s)
-            }
+                           }
         })
 
         sd = ArrayList()
@@ -224,6 +224,14 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
             R.id.imgClear->{
                 editSearch.setText("")
             }
+        }
+    }
+
+    fun hideSoftKeyboard(view: View?) {
+        if (view != null) {
+            val inputManager = view.context
+                .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager?.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 

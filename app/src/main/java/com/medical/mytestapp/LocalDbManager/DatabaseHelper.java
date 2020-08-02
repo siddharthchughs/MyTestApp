@@ -6,12 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import com.medical.mytestapp.model.Data;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import static com.medical.mytestapp.LocalDbManager.DatabaseContract.FeedEntry.COLUMN_SEARCH_CODE;
 import static com.medical.mytestapp.LocalDbManager.DatabaseContract.FeedEntry.COLUMN_SEARCH_COMMENT;
 import static com.medical.mytestapp.LocalDbManager.DatabaseContract.FeedEntry.COLUMN_SEARCH_ID;
@@ -23,7 +19,6 @@ import static com.medical.mytestapp.LocalDbManager.DatabaseContract.FeedEntry.TA
 
 public  class DatabaseHelper extends SQLiteOpenHelper {
 
-    // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "Database.db";
     public SQLiteDatabase db;
@@ -33,7 +28,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
     }
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_SEARCH);
-
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -47,9 +41,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-
-
-
     private static final String SQL_CREATE_SEARCH =
             "CREATE TABLE " + TABLE_SEARCH + " (" +
                     COLUMN_SEARCH_TYPE+ " TEXT," +
@@ -61,8 +52,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_TABLE_SEARCH =
             "DROP TABLE IF EXISTS " + TABLE_SEARCH;
-
-
 
     public void addListItem(ArrayList<Data> listItem) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -85,15 +74,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-//    public boolean read(String image_id) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String query = "SELECT " + COLUMN_SEARCH_COMMENT + " FROM " + TABLE_SEARCH + " WHERE " + COLUMN_SEARCH_ID + "='" + image_id + "' ";
-//        db.execSQL(query);
-////        db.execSQL("UPDATE "+TABLE_SEARCH+" SET "+ COLUMN_SEARCH_COMMENT +" = "+"'"+comment+"' "+ "WHERE "+COLUMN_SEARCH_ID+" = "+"'"+id+"'");
-//        db.close();
-//        return true;
-//    }
-
 
     public ArrayList getAlldata() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -101,43 +81,10 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + TABLE_SEARCH ;
         Cursor res = db.rawQuery(query, null);
         res.moveToFirst();
-
         while (!res.isAfterLast()) {
             array_list.add(res.getString(res.getColumnIndex("name")));
             res.moveToNext();
         }
         return array_list;
     }
-
-
-
-
-
-
-    //Search data with incremental procedure
-  /*  public List<Data> getSearchedLike(String searchName){
-        String query = "SELECT * FROM " + TABLE_SEARCH + " WHERE " + COLUMN_SEARCH_NAME + " LIKE '%" + searchName + "%' ";
-        //Cursor cursor = getReadableDatabase().query(TABLE_SEARCH, new String[]{"name_id"},"name_id like ?",new String[]{"%"+"Ba"+"%"},null,null,null);
-        // Cursor cursor = getReadableDatabase().query(query,null,null,null,null,null,null);//query(TABLE_SEARCH, null,null,null,null,null,null);
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery(query , null);
-        List<Data> ld = new ArrayList<>();
-        if (cursor.moveToFirst()){
-            {
-                do {
- //                   Data dt = new Data();
-   //                 dt.getTitle();
-//                    dt.getTitle() = cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_NAME));
-//                    SearchDatum searchDatum = new SearchDatum();
-//                    searchDatum.setName(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_NAME_ID)));
-//                    searchDatum.setCode(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_CODE)));
-//                    searchDatum.setType(cursor.getString(cursor.getColumnIndex(COLUMN_SEARCH_TYPE)));
-//                    Log.i("the","names are"+searchDatum);
-               //     ld.add(dt);
-                }while (cursor.moveToNext());
-            }
-        }
-        return ld;
-    }*/
-
 }
