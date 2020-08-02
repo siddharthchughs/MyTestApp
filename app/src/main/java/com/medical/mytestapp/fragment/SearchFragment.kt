@@ -1,5 +1,12 @@
 package com.medical.mytestapp.fragment
 
+
+/**
+ * Created :: Siddharth
+ */
+
+
+
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -37,13 +44,9 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
 
     lateinit var searchRecyerliew : RecyclerView
     lateinit var searchAdapter : SelectItemAdapter
-    private val RECYCLER_POSITION_KEY = "recycler_position"
-    private var mPosition = RecyclerView.NO_POSITION
-    private val mBundleState: Bundle? = null
     private var mainViewModel: SearchViewModel? = null
     lateinit var btnRetryConnectionServcie: Button
     lateinit var layoutCheckNetwork: LinearLayout
-    private lateinit var gridLayoutManager: GridLayoutManager
     var connected: Boolean ?= false
     lateinit var imgNetworkAvaiable: ImageView
     lateinit var imgNetworknotAvaiable: ImageView
@@ -57,11 +60,6 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
     lateinit var editSearch: EditText
     var dt:String?=null
     lateinit var db : DatabaseHelperManager
-    var loading = true
-    var pastVisiblesItems: Int?=null
-     var visibleItemCount: Int?=null
-    var totalItemCount: Int?=null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,16 +106,13 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
         editSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (editSearch.text!= null) {
                     dt = editSearch.text.toString()
                     searchfrom(dt.toString())
                 }
             }
-
-            override fun afterTextChanged(s: Editable) {
-                           }
+            override fun afterTextChanged(s: Editable) {}
         })
 
         sd = ArrayList()
@@ -144,7 +139,7 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
     }
 
     fun showfromLocal(){
-        searchAdapter = SelectItemAdapter(requireContext(),db.getAllCotacts, this)
+        searchAdapter = SelectItemAdapter(requireContext(),db.getAllSearchData, this)
         searchRecyerliew.layoutManager = GridLayoutManager(activity, ITEM_SPAN_COUNT_PORTRAIT)
         searchRecyerliew.itemAnimator = DefaultItemAnimator()
         searchRecyerliew.adapter = searchAdapter
@@ -171,6 +166,9 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
                 layoutCheckNetwork.visibility = VISIBLE
             }
         })
+        /* showfromlocal is runnable code to fetch the data related to search. It's working.
+        * but is not required,as main thread will be doing too much work.
+        * */
     }
 
     companion object {
@@ -231,8 +229,12 @@ class SearchFragment : Fragment() , SelectItemAdapter.SelectedClickListener,View
         if (view != null) {
             val inputManager = view.context
                 .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputManager?.hideSoftInputFromWindow(view.windowToken, 0)
+            inputManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
 
 

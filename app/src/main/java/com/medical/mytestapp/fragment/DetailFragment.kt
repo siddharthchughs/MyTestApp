@@ -17,10 +17,10 @@ import com.medical.mytestapp.ui.MainActivity
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Created :: Siddharth
  */
+
+
 class DetailFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null

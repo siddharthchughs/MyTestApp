@@ -75,7 +75,7 @@ class DatabaseHelperManager(context: Context?) : SQLiteOpenHelper(
 
 
 
-    val getAllCotacts: List<Data>
+    val getAllSearchData: List<Data>
     get()
     {
         val db = this.readableDatabase

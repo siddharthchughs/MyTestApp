@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">MyTestApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search_hint_text"> e.x type in as  Vanilla)</string>
+    <string name="search_hint_text"> Type in title of image </string>
     <string name="detail_submit_view">Save</string>
     <string name="detail_comment">Provide your comments</string>
     <string name="detail_comment_section">Please provide your comments for the image</string>

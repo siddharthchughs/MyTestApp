@@ -1,5 +1,10 @@
 package com.medical.mytestapp.fragment;
 
+
+/**
+ * Created :: Siddharth
+ */
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -66,8 +71,6 @@ public class SelectedItemFragment extends Fragment implements View.OnClickListen
         View v = inflater.inflate(R.layout.fragment_detail, container, false);
         showUIinitialize(v);
         intent = getActivity().getIntent();
-       // dh = new DatabaseHelper(getContext());
-
         if(savedInstanceState!=null){
         String savedTitle =  savedInstanceState.getString("title");
         String imgSelect =  savedInstanceState.getString("image");
@@ -93,7 +96,9 @@ public class SelectedItemFragment extends Fragment implements View.OnClickListen
         idReceieved=   getActivity().getIntent().getStringExtra("id");
         edit_Commentsection =(TextInputEditText) view.findViewById(R.id.edit_Commentsection);
         titleHeader.setText(toolbartitle);
-        Glide.with(getActivity()).load(imgReceieved.toString()).into(imgSelected);
+        Glide.with(getActivity())
+                .load(imgReceieved)
+                .into(imgSelected);
         readForImage(id_image);
     }
 
