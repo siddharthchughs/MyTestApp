@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2129147919/LiveDataExample.iml" filepath="$PROJECT_DIR$/.idea/modules/2129147919/LiveDataExample.iml" group="LiveDataExample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-520720351/app.iml" filepath="$PROJECT_DIR$/.idea/modules/-520720351/app.iml" group="LiveDataExample/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mycompanylocation.iml" filepath="$PROJECT_DIR$/.idea/modules/mycompanylocation.iml" group="LiveDataExample/mycompanylocation" />
+    </modules>
+  </component>
+</project>
