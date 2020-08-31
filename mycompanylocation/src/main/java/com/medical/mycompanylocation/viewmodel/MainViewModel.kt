@@ -7,7 +7,9 @@ import com.medical.mycompanylocation.repository.RepositoryCompanyMoshi
 
 class MainViewModel(application: Application): AndroidViewModel(application){
 
-    val companyRepo = RepositoryCompanyMoshi(application)
+//    val companyRepo = RepositoryCompanyMoshi(application)
+ //   val data  = companyRepo.companyInfomutable
+   val companyRepo = RepositoryCompanyMoshi(application)
     val data  = companyRepo.companyInfomutable
 
 }

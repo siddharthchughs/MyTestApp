@@ -16,6 +16,9 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -25,11 +28,10 @@ class RepositoryCompanyMoshi(val app: Application) {
     val listType = Types.newParameterizedType(List::class.java,CompanyInfo::class.java)
 
     init {
-        parseText()
-//        CoroutineScope(Dispatchers.IO).launch {
-////            getParsedData()
-//       //     parseText()
-//        }
+    //    parseText()
+        CoroutineScope(Dispatchers.IO).launch {
+            getParsedData()
+        }
 
         Log.i("the","network availability"+ "${networkConnection()}")
     }
