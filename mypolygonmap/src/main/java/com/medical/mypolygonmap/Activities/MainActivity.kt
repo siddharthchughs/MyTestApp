@@ -1,4 +1,4 @@
-package com.medical.mypolygonmap
+package com.medical.mypolygonmap.Activities
 
 import android.Manifest
 import android.content.Context
@@ -32,7 +32,7 @@ import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.medical.mypolygonmap.Activities.DetailInfoActivity
+import com.medical.mypolygonmap.R
 import java.io.IOException
 import java.lang.Math.toRadians
 
