@@ -291,15 +291,8 @@ class MainActivity : AppCompatActivity(), OnMyLocationButtonClickListener,
 
                 try {
                     if (points!!.size > 0 && points != null) {
-
-//                val dataCoordinateSumOne:Float = points!!.get(0).latitude.toFloat()+ points!!.get(0).longitude.toFloat()
-//                val dataCoordinateSumTwo: Float = points!!.get(1).latitude.toFloat()+points!!.get(1).longitude.toFloat()
-//                val dataCoordinateSumThree: Float = points!!.get(2).latitude.toFloat()+points!!.get(2).longitude.toFloat()
-//                val dataCoordinateSumFour: Float = points!!.get(3).latitude.toFloat()+points!!.get(3).longitude.toFloat()
-
                 val intent = Intent(applicationContext, DetailInfoActivity::class.java)
                         intent.putExtra("list", points)
-
                         startActivity(intent)
                         val editor: SharedPreferences.Editor = sharedPreferences.edit()
                         editor.putFloat("coordinateOnelat", points!!.get(0).latitude.toFloat())
