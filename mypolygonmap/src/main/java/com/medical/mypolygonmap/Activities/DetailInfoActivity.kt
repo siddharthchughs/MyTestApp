@@ -37,16 +37,11 @@ class DetailInfoActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-
         val id = view?.id
-
         when(id){
             R.id.imgBack->{
                 onBackPressed()
             }
         }
-
     }
-
-
 }
